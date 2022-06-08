@@ -66,6 +66,7 @@ h1 {
 #slider-arrows {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
     gap: var(--slider-image-gap);
     grid-column: 10 / span 2;
     grid-row: 2;
@@ -73,6 +74,7 @@ h1 {
 
 #slider-arrows > div {
     width: 100%;
+    max-width: calc((200px - var(--slider-image-gap)) / 2 - 2px);
     aspect-ratio: 1;
     border: var(--not-active-color) solid 1px;
     background-repeat: no-repeat;
