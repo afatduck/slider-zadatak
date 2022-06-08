@@ -1,0 +1,120 @@
+:root {
+    --primary-color: #134880;
+    --not-active-color: #ddd;
+    --slider-image-gap: 10px;
+    --slider-transition-duration: .5s;
+}
+
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'SourceSansPro', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+#slider-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 20px;
+    row-gap: var(--slider-image-gap);
+}
+
+#slider-container aside {
+    margin-top: 2rem;
+    grid-column: 2 / span 10;
+    grid-row: 3;
+}
+
+.slider-row {
+    grid-column: 1 / span 11;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.slider-row:nth-child(2) {
+    grid-column: 1 / span 8;
+}
+
+.slider-row-inner {
+    display: flex;
+    position: relative;
+    will-change: right;
+    transition: right var(--slider-transition-duration) ease-in-out;
+    right: 0;
+}
+
+.slider-row img {
+    height: 200px;
+    will-change: right;
+    position: relative;
+    margin-left: var(--slider-image-gap);
+}
+
+.slider-row img, #slider-arrows > div {
+    border-radius: 5px;
+}
+
+#slider-arrows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--slider-image-gap);
+    grid-column: 10 / span 2;
+    grid-row: 2;
+}
+
+#slider-arrows > div {
+    width: 100%;
+    aspect-ratio: 1;
+    border: var(--not-active-color) solid 1px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: var(--icon);
+}
+
+#slider-arrows > div:hover {
+    border-color: var(--primary-color);
+    background-image: var(--hover-icon);
+    cursor: pointer;
+}
+
+@media(min-width: 600px) {
+    #slider-arrows {
+        grid-column: 11;
+    }
+    #slider-container aside {
+        grid-column: 3 / span 8;
+    }
+}
+
+@media (min-width: 768px) {
+    #slider-container {
+        grid-template-columns: repeat(12, 1fr);
+    }
+
+    #slider-container aside {
+        grid-column: 9 / span 3;
+        grid-row: 1 / span 2;
+        margin-top: 0;
+    }
+
+    .slider-row {
+        grid-column: 1 / span 8;
+    }
+
+    .slider-row:nth-child(2) {
+        grid-column: 1 / span 6;
+    }
+    #slider-arrows {
+        grid-column: 8 / span 1;
+        grid-row: 2;
+    }
+}
