@@ -1,0 +1,53 @@
+#slider-container 
+    display: grid
+    grid-template-columns: repeat(12, 1fr)
+    column-gap: 20px
+    row-gap: $slider-image-gap
+    margin: 100px 0
+
+.slider-row 
+    grid-column: 1 / span 11
+    overflow: hidden
+    display: flex
+    flex-direction: row-reverse
+    position: relative
+
+.slider-row:nth-child(2) 
+    grid-column: 1 / span 8
+
+
+.slider-row-inner 
+    display: flex
+    position: relative
+    will-change: right
+    transition: right $slider-transition-duration ease-in-out
+    right: 0
+
+
+.slider-row img 
+    @include rounded
+    height: 200px
+    will-change: right
+    position: relative
+    margin-left: $slider-image-gap
+
+
+@media (min-width: 768px) 
+
+    #slider-container 
+        grid-template-columns: repeat(12, 1fr)
+
+    .slider-row 
+        grid-column: 1 / span 8
+
+    .slider-row:nth-child(2) 
+        grid-column: 1 / span 6
+    
+    #slider-arrows 
+        grid-column: 8 / span 1
+        grid-row: 2
+    
+@media (min-width: $container-max-width)
+    .slider-row
+        left: calc((100vw - $container-max-width) / -2)
+        width: calc((100vw - $container-max-width) / 2 + 100%)

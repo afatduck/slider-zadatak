@@ -1,9 +1,12 @@
-// Za dobivanje slike koja je u fokusu.
+// Reccomeded way of calling $(document).ready()
+$(() => {
+
+// For getting the image in focus. 
 $.fn.getFurthestRightChild = function() {
     let furthestRight = -Infinity
     let furthestRightChild = null
-    this.children().each(function() {
-        const element = $(this);
+    this.children().each((i, e) => {
+        const element = $(e);
         const offsetLeft = element.position().left
         if (offsetLeft > furthestRight) {
             furthestRight = offsetLeft
@@ -13,12 +16,12 @@ $.fn.getFurthestRightChild = function() {
     return furthestRightChild
 }
 
-// Za dobivanje slike koja ulazi u fokus ako se slider pomiče u lijevo.
+// For getting the image that is about to enter focus.
 $.fn.getFurthestLeftChild = function() {
     let furthestLeft = Infinity
     let furthestLeftChild = null
-    this.children().each(function() {
-        const element = $(this);
+    this.children().each((i, e) => {
+        const element = $(e);
         const offsetLeft = element.position().left
         if (offsetLeft < furthestLeft) {
             furthestLeft = offsetLeft
@@ -28,42 +31,43 @@ $.fn.getFurthestLeftChild = function() {
     return furthestLeftChild
 }
 
-// Ovdje zato što .css() vraća iznos u pikselima, a ne postocima.
+// Here because '.css()' returns value in pixels.
 $.fn.getStyleRight = function() {
     return this[0].style.right || "0"
 }
 
-const sliderArrows = $("#slider-arrows > div")
+const arrowLeft = $("#arrow-left")
+const arrowRight = $("#arrow-right")
 const sliderRows = $(".slider-row-inner")
 
 const root = $(":root")
 const sliderImageGap = parseInt(root.css("--slider-image-gap"))
 const sliderTransitionDuration = parseFloat(root.css("--slider-transition-duration"))
 
-// Da korisnik ne može ići dalje dok tranzicija nije gotova.
+// Used so the user cannot click the arrows while the slider is moving.
 let sliderWait = false
 
 const moveSlider = (left = false) => {
     if (sliderWait) return
     const direction = left ? 1 : -1
     sliderWait = true
-    sliderRows.each(function(){
-        const row = $(this);
+    sliderRows.each((i, e) => {
+        const row = $(e);
 
-        // Ako se slider pomiče u lijevo, zadnja slika mora doći prije prve.
+        // If slider is moving left, the last image must come before the first.
         if (left) {
             const firstImg = row.getFurthestLeftChild()
             const imgRight = firstImg.getStyleRight()
             firstImg.css("right", `${parseInt(imgRight) - 100}%`)
         }
 
-        // Cijeli red sa slikama se pomiče za širinu zadnje slike zbrojenu sa razmakom.
+        // The entire row is moved for the width of the last image plus the gap.
         const lastImage = row.getFurthestRightChild()
         const moveBy = (lastImage.width() + sliderImageGap) * direction
         const rowRight = row.css("right");
         row.css("right", `${parseInt(rowRight) + moveBy}px`)
 
-        // Ako se slider pomiče u desno, slika koja je izašla iz fokusa odlazi na početak.
+        // If slider is moving right, the image which left the focus must come to the begging of the row.
         if (!left) setTimeout(() => {
             const imgRight = lastImage.getStyleRight();
             lastImage.css("right", `${parseInt(imgRight) + 100}%`)
@@ -72,5 +76,7 @@ const moveSlider = (left = false) => {
     setTimeout(() => { sliderWait = false }, sliderTransitionDuration * 1000)
 }
 
-sliderArrows.first().click(() => moveSlider(true))
-sliderArrows.last().click(() => moveSlider())
+arrowLeft.on("click", () => moveSlider(true))
+arrowRight.on("click", () => moveSlider())
+
+})

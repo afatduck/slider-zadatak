@@ -1,0 +1,17 @@
+#slider-container aside 
+    margin-top: 2rem
+    grid-column: 2 / span 10
+    grid-row: 3
+
+    h1 
+        margin-top: 0
+        @include typography(inherit, 32px, 38px, -0.2px, $primary-color)
+
+    p
+        @include typography(inherit, 18px, 26px, -0.2px, $secondary-color)
+
+@media (min-width: 768px) 
+    #slider-container aside 
+        grid-column: 9 / span 4
+        grid-row: 1 / span 2
+        margin-top: 0

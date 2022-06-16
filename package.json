@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "watch-js": "babel src/main.js --out-file build/main.min.js -w",
+    "watch-css": "sass --watch src/style/master.sass build/master.css --style compressed",
+    "start": "concurrently \"npm:watch-css\" \"npm:watch-js\""
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2",
+    "babel-preset-minify": "^0.5.2",
+    "sass": "^1.52.3",
+    "concurrently": "^7.2.1"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}

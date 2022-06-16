@@ -1,0 +1,39 @@
+header, footer
+    height: 100px
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 20px
+
+    div
+
+        background-color: $dim-color
+
+        p
+            @include typography($helvetica-neue, 15px, 18px, inherit, white)
+            font-size: 15px
+            line-height: 18px
+            font-weight: bold
+            color: white
+            margin: auto 80px
+            display: block
+            position: relative
+            top: 50%
+            transform: translateY(-50%)
+
+header div:last-child 
+    grid-column: span 2
+
+header div
+    border-radius: 0 0 $radius $radius
+
+footer div
+    grid-column: span 3
+    border-radius: $radius $radius 0 0
+
+@media (max-width: $container-max-width)
+    header div:first-child
+        border-radius: 0 0 $radius 0 
+    header div:last-chil
+        border-radius: 0 0 0 $radius
+    footer div
+        border-radius: 0

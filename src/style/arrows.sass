@@ -1,0 +1,34 @@
+#slider-arrows 
+
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    gap: $slider-image-gap
+    grid-column: 10 / span 2
+    grid-row: 2
+
+    button
+        
+        @include rounded
+        width: 60px
+        background-color: inherit
+        aspect-ratio: 1
+        border: $dim-color solid 1px
+        background-repeat: no-repeat
+        background-position: center
+
+        &:hover
+            border-color: $primary-color
+            cursor: pointer
+
+    #arrow-left
+
+        background-image: url("./assets/arrow-gray-left.png")
+        &:hover
+            background-image: url("./assets/arrow-blue-left.png")
+
+    #arrow-right
+
+        background-image: url("./assets/arrow-gray-right.png")
+        &:hover
+            background-image: url("./assets/arrow-blue-right.png")

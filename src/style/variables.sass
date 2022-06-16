@@ -1,0 +1,29 @@
+$container-max-width: 940px
+$radius: 5px
+$primary-color: #134880
+$secondary-color: #484A4C
+$dim-color: #ddd
+$slider-image-gap: 10px
+$slider-transition-duration: .5s
+
+$helvetica-neue: "HelveticaNeue", Helvetica, Arial, sans-serif
+$source-sans-pro: 'Source Sans Pro', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
+// Here so properties needed in JS can all be found in one place
+:root 
+    --slider-image-gap: #{$slider-image-gap}
+    --slider-transition-duration: #{$slider-transition-duration}
+
+@mixin rounded
+    border-radius: $radius
+
+@mixin flex-col
+    display: flex
+    flex-direction: column
+
+@mixin typography($font-family, $font-size, $line-height, $letter-spacing, $color)
+    font-family: $font-family
+    font-size: $font-size
+    line-height: $line-height
+    letter-spacing: $letter-spacing
+    color: $color

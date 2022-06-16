@@ -1,0 +1,23 @@
+// Using import instead of use so variables don't have to be seperately imported
+@import "./variables.sass"
+@import "./arrows"
+@import "./header&footer"
+@import "./aside"
+@import "./slider"
+
+@font-face 
+    font-family: "HelveticaNeue"
+    font-weight: 700
+    src: url("font/HelveticaNeueBd.woff2") format("woff2"), url("font/HelveticaNeueBd.woff") format("woff")
+
+body 
+    margin: 0
+
+.container 
+    @include flex-col
+    max-width: $container-max-width
+    margin: 0 auto
+    min-height: 100vh
+    justify-content: space-between
+    font-family: $source-sans-pro
+
