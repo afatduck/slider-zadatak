@@ -40,9 +40,9 @@ const arrowLeft = $("#arrow-left")
 const arrowRight = $("#arrow-right")
 const sliderRows = $(".slider-row-inner")
 
-const root = $(":root")
-const sliderImageGap = parseInt(root.css("--slider-image-gap"))
-const sliderTransitionDuration = parseFloat(root.css("--slider-transition-duration"))
+const variables = $("#variables")
+const sliderImageGap = parseInt(variables.css("--slider-image-gap"))
+const sliderTransitionDuration = parseFloat(variables.css("--slider-transition-duration"))
 
 // Used so the user cannot click the arrows while the slider is moving.
 let sliderWait = false
